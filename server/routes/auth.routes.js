@@ -7,12 +7,7 @@ authRouter.get(
     scope: ["profile", "email"],
   })
 );
-
-authRouter.get("/github", passport.authenticate("github"));
-
 authRouter.get("/google/callback", passport.authenticate("google"));
-
-authRouter.get("/github/callback", passport.authenticate("github"));
 
 authRouter.get("/api/logout", (req, res) => {
   req.logout();
