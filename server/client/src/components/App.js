@@ -16,7 +16,6 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <Grid />
       <Header />
       <Switch>
         <Route exact path="/" component={Landing} />
