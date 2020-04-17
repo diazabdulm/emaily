@@ -22,6 +22,11 @@ app.use(passport.session());
 const authRouter = require("./routes/auth.routes");
 const billingRouter = require("./routes/billing.routes");
 
+mongoose.connect(keys.mongoURI);
+
+app.use("/auth", authRouter);
+app.use("/billing", billingRouter);
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 
@@ -30,10 +35,5 @@ if (process.env.NODE_ENV === "production") {
     response.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
-
-mongoose.connect(keys.mongoURI);
-
-app.use("/auth", authRouter);
-app.use("/billing", billingRouter);
 
 app.listen(PORT);
