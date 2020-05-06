@@ -40,3 +40,14 @@ export const handleToken = (token) => async (dispatch) => {
     dispatch(setUserFailure(error));
   }
 };
+
+export const submitSurvey = (values, history) => async (dispatch) => {
+  try {
+    const response = await axios.post("/surveys/api", values);
+    const user = await response.data;
+    dispatch(setUserSuccess(user));
+    history.push("/surveys");
+  } catch (error) {
+    throw new Error(error);
+  }
+};

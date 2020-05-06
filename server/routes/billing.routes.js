@@ -17,7 +17,7 @@ billingRouter.post("/api/stripe", requireLogin, async (req, res) => {
     const user = await req.user.save();
     res.send(user);
   } catch (error) {
-    throw new Error(error);
+    return response.status(500).send(error);
   }
 });
 
